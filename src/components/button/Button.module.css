@@ -1,0 +1,12 @@
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #b500ec;
+  color: #363636;
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
