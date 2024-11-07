@@ -1,40 +1,58 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
+import {Settings} from './components/settings/Settings';
+import {Counter} from './components/counter/Counter';
+
 import './App.css';
-import { Button } from './components/button/Button';
-import { Display } from './components/display/Display';
+
 
 function App() {
-  const [count, setCount] = useState(0);
-  const maxValue = 5;
-  const minValue = 0;
+    const [count, setCount] = useState(0);
+    const [messageIsShown, setMessageShown] = useState(true)
+    const [maxValue, setMaxValue] = useState<number>(5);
+    const [startValue, setStartValue] = useState<number>(0);
+    const [error, setError] = useState(false)
 
-  const setIncValue = () => {
-    if (count < maxValue) {
-      setCount(count + 1)
+    const setIncValue = () => {
+        if (count < maxValue) {
+            setCount(prev => prev + 1)
+        }
     }
-  }
+    const setResetValue = () => {
+        setCount(startValue);
+    }
 
-  const setResetValue = () => {
-    setCount(minValue);
-  }
+    const setAllValues = (preload: { newMaxValue: string, newStartValue: string }) => {
+        const {newMaxValue, newStartValue} = preload;
+        setMaxValue(+newMaxValue);
+        setStartValue(+newStartValue);
+        setCount(+newStartValue);
+    }
 
-  return (
-    <div className="App">
-      <Display count={count} maxValue={maxValue} />
-      <div className='button-wrapper'>
-        <Button
-          title={'inc'}
-          onClick={setIncValue}
-          disabled={count >= maxValue}
-        />
-        <Button
-          title={'reset'}
-          onClick={setResetValue}
-          disabled={count === minValue}
-        />
-      </div>
-    </div>
-  );
+    const checkForError = (startValue: number, maxValue: number) => {
+        if (startValue === maxValue || startValue > maxValue) {
+            setError(true)
+        } else {
+            setError(false)
+        }
+    }
+
+    return (
+        <div className="App">
+            <Settings
+                setAllValues={setAllValues}
+                setMessageShown={setMessageShown}
+                error={error}
+                checkForError={checkForError}/>
+            <Counter
+                count={count}
+                messageIsShown={messageIsShown}
+                maxValue={maxValue}
+                startValue={startValue}
+                setIncValue={setIncValue}
+                setResetValue={setResetValue}
+                error={error}/>
+        </div>
+    );
 }
 
 export default App;

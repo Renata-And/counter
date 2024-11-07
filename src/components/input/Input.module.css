@@ -1,0 +1,20 @@
+.input {
+  padding: 5px;
+  width: 100px;
+  border: 2px solid #363636;
+  border-radius: 5px;
+}
+
+.input:focus {
+  border-color: #b500ec;
+  outline: none;
+}
+
+.errorInput {
+  border: 2px solid #be3a3a;
+  background-color: #e9a5a5;
+}
+
+.errorInput:focus {
+  border: 2px solid #be3a3a;
+}
