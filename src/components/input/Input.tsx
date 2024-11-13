@@ -5,9 +5,10 @@ type InputProps = {
   type: string
   value: string
   onChange: (value: string) => void
-  className: string
+  error: string
 }
 
-export const Input = ({ type, value, onChange, className }: InputProps) => {
-  return <input className={className ? `${s.input} ${s.errorInput}` : s.input} type={type} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
+export const Input = ({ type, value, onChange, error }: InputProps) => {
+  const finalClassName = error ? `${s.input} ${s.errorInput}` : s.input;
+  return <input className={finalClassName} type={type} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
 }

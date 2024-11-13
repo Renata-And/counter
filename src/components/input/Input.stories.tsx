@@ -7,6 +7,6 @@ export default {
 }
 
 export const NumberType = () => {
-  return <Input type={'number'} value={'1'} onChange={() => { action('input changed') }} className='' />
+  return <Input type={'number'} value={'1'} onChange={() => { action('input changed') }} error={''} />
 }
 

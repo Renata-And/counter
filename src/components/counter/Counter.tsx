@@ -9,7 +9,7 @@ type CounterProps = {
   startValue: number
   setIncValue: () => void
   setResetValue: () => void
-  error: boolean
+  error: string
 }
 
 export const Counter = (props: CounterProps) => {
@@ -21,7 +21,7 @@ export const Counter = (props: CounterProps) => {
         <div className={count >= maxValue ? 'count max' : 'count'}>
           {messageIsShown && !error && <span className='message'>enter values and press set</span>}
           {!messageIsShown && !error && count}
-          {error && <span className='message'>incorrect values</span>}
+          {error && <span className='message'>{error}</span>}
         </div>
       </ValueDisplay>
       <div className='btn-wrapper'>

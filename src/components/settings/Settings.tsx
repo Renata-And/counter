@@ -6,7 +6,7 @@ import { Button } from '../button/Button'
 type SettingsProps = {
   setAllValues: (preload: { newMaxValue: string, newStartValue: string }) => void
   setMessageShown: (value: boolean) => void
-  error: boolean
+  error: string
   checkForError: (startValue: number, maxValue: number) => void
 }
 
@@ -49,14 +49,14 @@ export const Settings = (props: SettingsProps) => {
     <div className='card'>
       <ValueDisplay>
         <label>
-          max value: <Input type={'number'} onChange={maxValueHandler} value={newMaxValue} className={error ? 'errorInput' : ''} />
+          max value: <Input type={'number'} onChange={maxValueHandler} value={newMaxValue} error={error} />
         </label>
         <label>
-          start value: <Input type={'number'} onChange={minValueHandler} value={newStartValue} className={error ? 'errorInput' : ''} />
+          start value: <Input type={'number'} onChange={minValueHandler} value={newStartValue} error={error} />
         </label>
       </ValueDisplay>
       <div className='btn-wrapper'>
-        <Button title={'set'} onClick={onClickHandler} disabled={isDisabled || error} />
+        <Button title={'set'} onClick={onClickHandler} disabled={isDisabled || !!error} />
       </div>
     </div>
   )
