@@ -9,6 +9,6 @@ type InputProps = {
 }
 
 export const Input = ({ type, value, onChange, error }: InputProps) => {
-  const finalClassName = error ? `${s.input} ${s.errorInput}` : s.input;
+  const finalClassName = error === 'incorrect values' ? `${s.input} ${s.errorInput}` : s.input;
   return <input className={finalClassName} type={type} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
 }
