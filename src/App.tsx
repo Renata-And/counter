@@ -9,7 +9,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [maxValue, setMaxValue] = useState<number>(5);
   const [startValue, setStartValue] = useState<number>(0);
-  const [messageIsShown, setMessageShown] = useState(true);
+  const [messageIsShown, setMessageIsShown] = useState(true);
   const [error, setError] = useState('')
 
   const setIncValue = () => {
@@ -21,8 +21,8 @@ function App() {
     setCount(startValue);
   }
 
-  const setAllValues = (preload: { newMaxValue: string, newStartValue: string }) => {
-    const { newMaxValue, newStartValue } = preload;
+  const setAllValues = (payload: { newMaxValue: string, newStartValue: string }) => {
+    const { newMaxValue, newStartValue } = payload;
     setMaxValue(+newMaxValue);
     setStartValue(+newStartValue);
     setCount(+newStartValue);
@@ -40,7 +40,7 @@ function App() {
     <div className="App">
       <Settings
         setAllValues={setAllValues}
-        setMessageShown={setMessageShown}
+        setMessageIsShown={setMessageIsShown}
         error={error}
         checkForError={checkForError} />
       <Counter
